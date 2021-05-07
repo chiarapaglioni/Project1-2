@@ -1,6 +1,9 @@
 package PhysicsEngine.InterfacesImplementations;
 
+import PhysicsEngine.Planets.PlanetStart;
+import PhysicsEngine.Probe.Probe;
 import PhysicsEngine.titan.ProbeSimulatorInterface;
+import PhysicsEngine.titan.StateInterface;
 import PhysicsEngine.titan.Vector3dInterface;
 import PhysicsEngine.Planets.Planet;
 
@@ -25,21 +28,22 @@ public class ProbeSimulator implements ProbeSimulatorInterface {
     @Override
     public Vector3dInterface[] trajectory(Vector3dInterface p0, Vector3dInterface v0, double[] ts) {
 
-        //starting conditions of the spacecraft
-        Planet.planets[11].posVector = p0;
-        Planet.planets[11].velVector = v0;
+        //Starting conditions of the spacecraft
+        Probe probe = new Probe();
+        probe.posVector = p0;
+        probe.velVector = p0;
 
         if(DEBUG){
             System.out.println("probeSimulator - probe at 0 " + Planet.planets[11].posVector);
         }
 
-        //initial state of the system
-        State y0 = new State();
-        y0.initializeState();
+        //Initial state of the system
+        PlanetStart start = new PlanetStart();
+        StateInterface y0 = start.getInitState();
 
         if(DEBUG){
             for(int i = 0; i < Planet.planets.length; i++) {
-                System.out.println("probeSimulator " + Planet.planets[i].name + " " + y0.getPos(i));
+                System.out.println("probeSimulator " + Planet.planets[i].name + " " + ((State) y0).getPos().get(i));
             }
         }
 
@@ -50,10 +54,10 @@ public class ProbeSimulator implements ProbeSimulatorInterface {
         //extract information
         Vector3d[] trajectory = new Vector3d[ts.length];
 
+        //CHANGE TO ACCESS POSITION OF PROBE, NOT THE ONE OF ARRAY PLANET
         for(int i = 0; i < trajectory.length; i++){
-            trajectory[i] = (Vector3d) states[i].getPos(10);
+            trajectory[i] = (Vector3d) states[i].getPos().get(11);
         }
-
         return trajectory;
     }
 
@@ -69,38 +73,39 @@ public class ProbeSimulator implements ProbeSimulatorInterface {
     @Override
     public Vector3dInterface[] trajectory(Vector3dInterface p0, Vector3dInterface v0, double tf, double h) {
 
-        //starting conditions of the spacecraft
-        Planet.planets[11].posVector = p0;
-        Planet.planets[11].velVector = v0;
+        //Starting conditions of the spacecraft
+        Probe probe = new Probe();
+        probe.posVector = p0;
+        probe.velVector = p0;
 
         if(DEBUG){
             System.out.println("probeSimulator - probe at 0 " + Planet.planets[11].posVector);
         }
 
-        //initial state of the system
-        State y0 = new State();
-        y0.initializeState(); // can solve this better?
+        //Initial state of the system
+        PlanetStart start = new PlanetStart();
+        StateInterface y0 = start.getInitState();
 
         if(DEBUG){
             for(int i = 0; i < Planet.planets.length; i++) {
-                System.out.println("probeSimulator " + Planet.planets[i].name + " " + y0.getPos(i));
+                System.out.println("probeSimulator " + Planet.planets[i].name + " " + ((State) y0).getPos().get(i));
             }
         }
 
-        //start solver
+        //Start solver
         ODESolver solver = new ODESolver();
         State[] states = (State[]) solver.solve(new ODEFunction(), y0, tf, h);
 
-        //extract information
+        //Extract information
         Vector3d[] trajectory = new Vector3d[(int) (Math.round(tf/h)+1)];
 
+        //CHANGE TO ACCESS POSITION OF PROBE, NOT THE ONE OF ARRAY PLANET
         for(int i = 0; i < trajectory.length; i++){
-            trajectory[i] = (Vector3d) states[i].getPos(11);
+            trajectory[i] = (Vector3d) states[i].getPos().get(11);
             if(DEBUG){
                 System.out.println("probeSimulator - trajectory " + trajectory[i].toString());
             }
         }
-
         return trajectory;
     }
 }

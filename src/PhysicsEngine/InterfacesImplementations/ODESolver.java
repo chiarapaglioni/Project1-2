@@ -1,6 +1,5 @@
 package PhysicsEngine.InterfacesImplementations;
 
-import PhysicsEngine.InterfacesImplementations.State;
 import PhysicsEngine.titan.ODEFunctionInterface;
 import PhysicsEngine.titan.ODESolverInterface;
 import PhysicsEngine.titan.StateInterface;
@@ -82,7 +81,7 @@ public class ODESolver implements ODESolverInterface {
     }
 
     /**
-     * calculating one step
+     * Calculating one step
      *
      * @param f PhysicsEngine.PhysicsEngine.Planets.InterfacesImplementations.ODEFunction implementing Newton's law
      * @param t time
@@ -92,7 +91,6 @@ public class ODESolver implements ODESolverInterface {
      */
     @Override
     public StateInterface step(ODEFunctionInterface f, double t, StateInterface y, double h) {
-
         State newState = (State) y.addMul(h, f.call(h, y));
         return newState;
     }

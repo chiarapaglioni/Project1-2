@@ -6,7 +6,7 @@ import PhysicsEngine.titan.StateInterface;
 import PhysicsEngine.Planets.Planet;
 
 /**
- * class calculating acceleration using Newton's Law of Gravitation
+ * Class calculating acceleration using Newton's Law of Gravitation
  *
  * @author Leo
  */
@@ -24,8 +24,8 @@ public class ODEFunction implements ODEFunctionInterface {
      * we can eliminate m(i), so that
      * a(i) = Gm(j)*(pos(i)-pos(j)/|pos(i)-pos(j)|^3
      *
-     * @param t
-     * @param y =  state of the system
+     * @param t is the time of the state
+     * @param y is the state of the system
      *
      * @return rate of change that is acceleration for each objects
      */
@@ -46,7 +46,7 @@ public class ODEFunction implements ODEFunctionInterface {
             for (int j = 0; j < Planet.planets.length; j++) {
                 if (i != j) {
                     //calculate acceleration from the attraction of two objects
-                    Vector3d acc = (Vector3d) (((((State) y).getPos(j).sub(((State) y).getPos(i))).mul(1 / (Math.pow(((State) y).getPos(i).dist(((State) y).getPos(j)), 3))))).mul(G * Planet.planets[j].mass);
+                    Vector3d acc = (Vector3d) (((((State) y).getPos().get(j).sub(((State) y).getPos().get(i))).mul(1 / (Math.pow(((State) y).getPos().get(i).dist(((State) y).getPos().get(j)), 3))))).mul(G * Planet.planets[j].mass);
                     //add calculated acc to total acceleration of object i
                     rate.add(i, acc);
                     if(DEBUG){

@@ -1,10 +1,10 @@
-package PhysicsEngine;
+package PhysicsEngine.Probe;
 
 import PhysicsEngine.Planets.Planet;
 import PhysicsEngine.InterfacesImplementations.Vector3d;
 
 /**
- * class to calculate optimal initial conditions for the probe to launch
+ * Class to calculate optimal initial conditions for the probe to launch
  *
  * @author Oscar, Leo
  */
@@ -16,11 +16,10 @@ public class TakeOffPoint {
     public Vector3d startVel;
 
     /**
-     * constructor
+     * Constructor
      * @param initVel initial velocity in m/s
      */
     public TakeOffPoint(double initVel){
-
        unitVector();
        startPos();
        startVel(initVel);

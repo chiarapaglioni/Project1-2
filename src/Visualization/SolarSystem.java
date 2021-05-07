@@ -44,5 +44,4 @@ public class SolarSystem extends Application {
         stage.setFullScreen(true);
         stage.show();
     }
-
 }

@@ -1,5 +1,11 @@
 package PhysicsEngine.Planets;
 
+import PhysicsEngine.InterfacesImplementations.State;
+import PhysicsEngine.titan.StateInterface;
+import PhysicsEngine.titan.Vector3dInterface;
+
+import java.util.ArrayList;
+
 /**
  * this class initializes the constellation of objects of the solar system on 01-04-2020
  * as found on https://ssd.jpl.nasa.gov/horizons.cgi
@@ -13,7 +19,7 @@ public class PlanetStart {
 
     public PlanetStart() {
 
-        //array of all objects
+        //Array of all objects
         planets = new Planet[12];
 
         //sun
@@ -170,9 +176,10 @@ public class PlanetStart {
         neptune.vectors();
         planets[10] = neptune;
 
-        //spacecraft
+        //ONLY TO TEST, REMOVE LATER
+        //Spacecraft
         Planet spaceCraft = new Planet("SpaceCraft");
-        // Adding the Earths radius somewhere = 6371e+3;
+        //Adding the Earths radius somewhere = 6371e+3;
         spaceCraft.mass = 15000;
         spaceCraft.radius = 10;
         spaceCraft.gravity = 1e-10;
@@ -191,10 +198,54 @@ public class PlanetStart {
         spaceCraft.vectors();
         planets[11] = spaceCraft;
 
-        //copy array to be held in PhysicsEngine.Planets.Planet class
+        //Copy array to be held in Planet class
         Planet.planets = planets;
     }
 
+    /**
+     * @return array with all the initial masses of all the planets
+     */
+    public double[] getInitMasses() {
+        double[] masses = new double[planets.length];
 
+        for (int i = 0; i < planets.length; i++) {
+            masses[i] = planets[i].mass;
+        }
+        return masses;
+    }
+
+    /**
+     * @return ArrayList with the initial positions of all planets
+     */
+    public ArrayList<Vector3dInterface> getInitPos() {
+        ArrayList<Vector3dInterface> initPos = new ArrayList<>();
+
+        for (int i = 0; i < planets.length; i++) {
+            initPos.add(planets[i].posVector);
+        }
+        return initPos;
+    }
+
+    /**
+     * @return ArrayList with the initial velocities of all planets
+     */
+    public ArrayList<Vector3dInterface> getInitVel() {
+        ArrayList<Vector3dInterface> initVel = new ArrayList<>();
+
+        for (int i = 0; i < planets.length; i++) {
+            initVel.add(planets[i].velVector);
+        }
+        return initVel;
+    }
+
+    /**
+     * @return the initial state
+     */
+    public StateInterface getInitState() {
+        ArrayList<Vector3dInterface> initPos = getInitPos();            //Initial positions
+        ArrayList<Vector3dInterface> initVel = getInitVel();            //Initial velocities
+        StateInterface initState = new State(0, initPos, initVel);   //Initial state
+        return initState;
+    }
 }
 
