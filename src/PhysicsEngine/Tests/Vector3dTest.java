@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import PhysicsEngine.titan.Vector3dInterface;
-import PhysicsEngine.InterfacesImplementations.Vector3d;
+import PhysicsEngine.Vector3d;
 
 class Vector3dTest {
 

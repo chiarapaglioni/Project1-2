@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import PhysicsEngine.titan.ProbeSimulatorInterface;
 import PhysicsEngine.titan.Vector3dInterface;
-import PhysicsEngine.InterfacesImplementations.Vector3d;
-import PhysicsEngine.InterfacesImplementations.ProbeSimulator;
+import PhysicsEngine.Vector3d;
+import PhysicsEngine.ProbeSimulator;
 
 import java.io.FileWriter;
 import java.io.IOException;

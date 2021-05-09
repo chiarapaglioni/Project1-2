@@ -1,4 +1,4 @@
-package PhysicsEngine.InterfacesImplementations;
+package PhysicsEngine;
 
 import PhysicsEngine.titan.RateInterface;
 import PhysicsEngine.titan.StateInterface;

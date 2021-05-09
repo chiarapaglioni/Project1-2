@@ -1,7 +1,7 @@
 package PhysicsEngine.Probe;
 
 import PhysicsEngine.Planets.Planet;
-import PhysicsEngine.InterfacesImplementations.Vector3d;
+import PhysicsEngine.Vector3d;
 
 /**
  * Class to calculate optimal initial conditions for the probe to launch

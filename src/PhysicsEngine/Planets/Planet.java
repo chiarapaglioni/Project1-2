@@ -1,6 +1,6 @@
 package PhysicsEngine.Planets;
 
-import PhysicsEngine.InterfacesImplementations.Vector3d;
+import PhysicsEngine.Vector3d;
 import PhysicsEngine.titan.Vector3dInterface;
 
 import java.util.ArrayList;

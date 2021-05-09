@@ -1,7 +1,7 @@
-import PhysicsEngine.InterfacesImplementations.State;
+import PhysicsEngine.State;
 import PhysicsEngine.Planets.PlanetStart;
-import PhysicsEngine.InterfacesImplementations.ProbeSimulator;
-import PhysicsEngine.InterfacesImplementations.ODESolver;
+import PhysicsEngine.ProbeSimulator;
+import PhysicsEngine.ODESolver;
 import PhysicsEngine.Probe.TakeOffPoint;
 import PhysicsEngine.Solvers.RungeKuttaSolver;
 import PhysicsEngine.Solvers.VerletSolver;
@@ -38,7 +38,7 @@ public class Main {
         VerletSolver verlet = new VerletSolver(initState, h, tf/h);
         RungeKuttaSolver rungeKutta = new RungeKuttaSolver(); //To be added!!!
 
-        ArrayList<StateInterface> verletStates = verlet.doVerlet();
+        ArrayList<StateInterface> verletStates = verlet.solve();
 
         //Calculate trajectory of the probe
         Vector3dInterface[] trajectory = probeSimulator.trajectory(p0, v0, tf, h);

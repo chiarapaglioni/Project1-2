@@ -1,4 +1,4 @@
-package PhysicsEngine.InterfacesImplementations;
+package PhysicsEngine;
 
 import PhysicsEngine.titan.RateInterface;
 import PhysicsEngine.Planets.Planet;
@@ -15,7 +15,9 @@ public class Rate implements RateInterface {
     //storing acc values for all objects
     Vector3d[] rate = new Vector3d[Planet.planets.length];
 
-
+    /**
+     * CONSTRUCTOR
+     */
     public Rate(){
         for(int i = 0; i < rate.length; i++){
             rate[i] = new Vector3d();
@@ -36,9 +38,7 @@ public class Rate implements RateInterface {
         }
     }
 
-    public Vector3d get(int i){
-        return rate[i];
-    }
+    public Vector3d get(int i){ return rate[i]; }
 
     public String toString(){
         String str = "";
@@ -47,5 +47,4 @@ public class Rate implements RateInterface {
         }
         return str;
     }
-
 }

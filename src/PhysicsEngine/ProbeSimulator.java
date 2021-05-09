@@ -1,4 +1,4 @@
-package PhysicsEngine.InterfacesImplementations;
+package PhysicsEngine;
 
 import PhysicsEngine.Planets.PlanetStart;
 import PhysicsEngine.Probe.Probe;
@@ -54,7 +54,6 @@ public class ProbeSimulator implements ProbeSimulatorInterface {
         //extract information
         Vector3d[] trajectory = new Vector3d[ts.length];
 
-        //CHANGE TO ACCESS POSITION OF PROBE, NOT THE ONE OF ARRAY PLANET
         for(int i = 0; i < trajectory.length; i++){
             trajectory[i] = (Vector3d) states[i].getPos().get(11);
         }
@@ -99,7 +98,6 @@ public class ProbeSimulator implements ProbeSimulatorInterface {
         //Extract information
         Vector3d[] trajectory = new Vector3d[(int) (Math.round(tf/h)+1)];
 
-        //CHANGE TO ACCESS POSITION OF PROBE, NOT THE ONE OF ARRAY PLANET
         for(int i = 0; i < trajectory.length; i++){
             trajectory[i] = (Vector3d) states[i].getPos().get(11);
             if(DEBUG){
